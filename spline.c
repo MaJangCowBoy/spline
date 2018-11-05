@@ -1,3 +1,6 @@
+/*
+ This code calculates the coefficients from boundary condition for each cell.
+ */
 #include <stdio.h>
 #include "spline.h"
 #include <stdlib.h>
@@ -7,7 +10,7 @@ int main() {
  
   int i,j,k;
   FILE *fp;
-  double x,y,z;
+  double _val_x,_val_y,_val_z;
   
   fp = fopen("input.txt","r");
   
