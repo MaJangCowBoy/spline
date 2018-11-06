@@ -11,7 +11,6 @@ int main() {
   int _NL;
   double _delX,_delY;
   double _Val_x,_Val_y,_Val_z;
-  double _Coeff_a[16][_NL][_NL];    /* Coefficient vector */
   double _tmp_BC[16];         /* Boundary condition */
   FILE *fp;
   
@@ -20,6 +19,8 @@ int main() {
   fscanf(fp,"%d",&_NL);
   fscanf(fp,"%lf",&_delX);
   fscanf(fp,"%lf",&_delY);
+  
+  double _Coeff_a[16][_NL][_NL];    /* Coefficient vector */
   
   for(N=0;N<_NL;N++) 
     for(M=0;M<_NL;M++) {
