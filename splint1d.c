@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define _NL 2
+#define _NL 
 
 int main() {
   
