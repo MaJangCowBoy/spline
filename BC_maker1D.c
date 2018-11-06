@@ -6,11 +6,15 @@
 #define _INTV 0.1
 #endif
 
+#ifndef _NPOINT
+#define _NPOINT 11
+#endif
+
 int main() {
 
   int i,j,k;
   int NL;
-  double _Val_x[11], _Val_y[11], _Val_z[11];
+  double _Val_x[_NPOINT], _Val_y[_NPOINT], _Val_z[_NPOINT];
   FILE *fp;
 	
   fp = fopen("nothing.txt","r");
@@ -23,7 +27,7 @@ int main() {
     fscanf(fp,"%lf",&coeff[i]);  
   }
 	
-  for(i=0;i<11;i++) {
+  for(i=0;i<_NPOINT;i++) {
     _Val_x[i] = _INTV * i;
     _Val_y[i] = 0.0;
     _Val_z[i] = 0.0;
@@ -37,7 +41,7 @@ int main() {
 
   fprintf(fp,"%lf\n",_INTV);
   
-  for(i=0;i<10;i++) {
+  for(i=0;i<(_NPOINT-1);i++) {
     fprintf(fp,"%lf\t",_Val_y[i]);
     fprintf(fp,"%lf\t",_Val_y[i+1]);
     fprintf(fp,"%lf\t",_Val_z[i]);
