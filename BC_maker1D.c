@@ -27,6 +27,8 @@ int main() {
     fscanf(fp,"%lf",&coeff[i]);  
   }
 	
+  fclose(fp);
+	
   for(i=0;i<_NPOINT;i++) {
     _Val_x[i] = _INTV * i;
     _Val_y[i] = 0.0;
