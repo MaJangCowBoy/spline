@@ -32,7 +32,7 @@ int main() {
 	
   double coeff[NL*NL];
   
-  for(N=0;N<NL;N++) {
+  for(N=0;N<(NL*NL);N++) {
     fscanf(fp,"%lf",&coeff[N]);  
   }
 	
