@@ -41,6 +41,7 @@ int main() {
   
   fp = fopen("something.txt","w"); 
 
+  fprintf(fp,"%d\n",(_NPOINT-1));
   fprintf(fp,"%lf\n",_INTV);
   
   for(i=0;i<(_NPOINT-1);i++) {
