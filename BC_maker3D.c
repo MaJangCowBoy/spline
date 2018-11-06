@@ -10,6 +10,10 @@
 #define _INTVY 0.1
 #endif
 
+#ifndef _INTVZ
+#define _INTVZ 0.1
+#endif
+
 #ifndef _NPOINT
 #define _NPOINT 11
 #endif
@@ -17,8 +21,8 @@
 int main() {
 
   int i,j,k;
-  int N,M;
-  int a,b;
+  int N,M,L;
+  int a,b,c;
   int NL;
   double _Val_x[_NPOINT], _Val_y[_NPOINT];
   double _Val_f[_NPOINT][_NPOINT];
@@ -30,14 +34,14 @@ int main() {
 
   fscanf(fp,"%d",&NL);
 	
-  double coeff[NL*NL];
+  double coeff[NL*NL*NL];
   
-  for(N=0;N<NL;N++) {
+  for(N=0;N<(NL*NL*NL);N++) {
     fscanf(fp,"%lf",&coeff[N]);  
   }
 	
   fclose(fp);
-	
+/* From here... */
   for(i=0;i<_NPOINT;i++) 
     for(j=0;j<_NPOINT;j++) {
 	    
