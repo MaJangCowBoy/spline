@@ -8,6 +8,8 @@ int main() {
   int i,j,k;
   int a,b,c;
   int N,M;
+  int _NL;
+  double _delX;
   double _Val_x,_Val_y,_Val_z;
   double _Coeff_a[4][_NL];    /* Coefficient vector */
   double _tmp_BC[4];         /* Boundary condition */
