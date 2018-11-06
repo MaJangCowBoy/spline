@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define _NL 
-
 int main() {
   
   int i,j,k;
@@ -12,16 +10,22 @@ int main() {
   int N,M;
   double _Val_x,_Val_y,_Val_z;
   double _Coeff_a[4][_NL];    /* Coefficient vector */
-  double _tMp_BC[4];         /* Boundary condition */
+  double _tmp_BC[4];         /* Boundary condition */
   FILE *fp;
   
   fp = fopen("something.txt","r");
 
+  fscanf(fp,"%d",&_NL);
+  fscanf(fp,"%lf",&_delX);
+  
   for(N=0;N<_NL;N++) {
     fscanf(fp,"%lf",&_tmp_BC[0]); /* f(x_i)*/
     fscanf(fp,"%lf",&_tmp_BC[1]); /* f(x_(i+1))*/
     fscanf(fp,"%lf",&_tmp_BC[2]); /* f'(x_i)*/
     fscanf(fp,"%lf",&_tmp_BC[3]); /* f'(x_(i+1))*/
+    
+    _tmp_BC[2] *= _delX;
+    _tmp_BC[3] *= _delX;
     
     for(i=0;i<4;i++) {
       _Coeff_a[i][N] = 0.0;
