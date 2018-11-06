@@ -39,5 +39,18 @@ int main() {
       }
   }
   
+  fclose(fp);
+  
+  fp = fopen("something_else.txt","w");
+  
+  for(N=0;N<_NL;N++) {
+    for(i=0;i<4;i++) {
+      fprintf(fp,"%lf\t",_Coeff_a[i][N]);
+    }
+    fprintf(fp,"\n");
+  }
+  
+  fclose(fp);
+  
   return 0;
 }
