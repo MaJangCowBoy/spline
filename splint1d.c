@@ -44,10 +44,10 @@ int main() {
   fp = fopen("something_else.txt","w");
   
   for(N=0;N<_NL;N++) {
-    for(i=0;i<4;i++) {
-      fprintf(fp,"%lf\t",_Coeff_a[i][N]);
-    }
-    fprintf(fp,"\n");
+    fprintf(fp,"%lf\t",_Coeff_a[0][N]);
+    fprintf(fp,"%lf\t",_Coeff_a[1][N]);
+    fprintf(fp,"%lf\t",_Coeff_a[2][N]);
+    fprintf(fp,"%lf\n",_Coeff_a[3][N]);
   }
   
   fclose(fp);
