@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define _NL 2
+#define _NL 10
 
 int main() {
   
@@ -33,5 +33,9 @@ int main() {
       }
     }
     
+  fp = fopen("something_else.txt","w");
+  
+  for(N=0;N<_NL)
+  
   return 0;
 }
