@@ -58,7 +58,7 @@ int main() {
     for(M=0;M<_NL;M++) {
       
       for(i=0;i<16;i++) {
-        fprintf(fp,"%lf\t",_Coeff_a[0][N]);
+        fprintf(fp,"%lf\t",_Coeff_a[i][N][M]);
       }
       fprintf(fp,"\n");
   }
