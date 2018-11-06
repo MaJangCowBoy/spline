@@ -6,26 +6,39 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define _NL 2
+
 int main() {
- 
+  
   int i,j,k;
   int a,b,c;
-  FILE *fp;
+  int N,M,L;
   double _Val_x,_Val_y,_Val_z;
- 
-  double 
-  double _Coeff[64];
+  double _Coeff_a[64][_NL][_NL][_NL];    
+  /* Coefficient vector */
+  double _tmp_BC[64];         
+  /* Boundary condition */
+  FILE *fp;
   
-  fp = fopen("input.txt","r");
-  
-  if(fp == NULL) { printf("error open file\n"); exit(1); }
+  fp = fopen("something.txt","r");
 
-  fscanf();
- 
- for(i=0;i<64;i++)
-  for(j=0;j<64;j++) {
+  for(N=0;N<_NL;N++) 
+    for(M=0;M<_NL;M++)
+      for(L=0;L<_NL;L++) {
+     
+        for(j=0;j<64;j++) {
+          fscanf(fp,"%lf",&_tmp_BC[j]); 
+        }
     
-  }
+        for(i=0;i<64;i++) {
+          _Coeff_a[i][n] = 0.0;
+        }
+    
+        for(i=0;i<64;i++) 
+          for(j=0;j<64;j++) {
+            _Coeff_a[i][N][M][L] += _C3[i][j]*_tmp_BC[j];
+          }
+      }
   
   return 0;
 }
