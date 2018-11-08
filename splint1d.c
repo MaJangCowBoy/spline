@@ -27,8 +27,9 @@ int main() {
     fscanf(fp,"%lf",&_tmp_BC[2]); /* f'(x_i)*/
     fscanf(fp,"%lf",&_tmp_BC[3]); /* f'(x_(i+1))*/
     
-    _tmp_BC[2] *= _delX;
-    _tmp_BC[3] *= _delX;
+    for(i=2;i<4;i++) {
+      _tmp_BC[i] *= _delX;
+    }
     
     for(i=0;i<4;i++) {
       _Coeff_a[i][N] = 0.0;
