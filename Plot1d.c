@@ -14,7 +14,7 @@ int main() {
   fp = fopen("something_else.txt","r");
   
   fscanf(fp,"%d",&_NL);
-  fscanf(fp,"%lf,&_delX);
+  fscanf(fp,"%lf",&_delX);
   
   for(i=0;i<_NL;i++) {
 
