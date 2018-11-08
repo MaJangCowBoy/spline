@@ -73,6 +73,9 @@ int main() {
   
   fp = fopen("something_else.txt","w");
   
+  fprintf(fp,"%d\n",_NL);
+  fprintf(fp,"%lf\t%lf\t%lf\n",_delX,_delY,_delZ);
+  
   for(N=0;N<_NL;N++) 
     for(M=0;M<_NL;M++)
       for(L=0;L<_NL;L++) {
