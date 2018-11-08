@@ -22,13 +22,13 @@ int main() {
   double _Coeff_a[4][_NL];    /* Coefficient vector */  
   
   for(N=0;N<_NL;N++) {
-    fscanf(fp,"%lf",&_tmp_BC[0]); /* f(x_i)*/
-    fscanf(fp,"%lf",&_tmp_BC[1]); /* f(x_(i+1))*/
-    fscanf(fp,"%lf",&_tmp_BC[2]); /* f'(x_i)*/
-    fscanf(fp,"%lf",&_tmp_BC[3]); /* f'(x_(i+1))*/
-    
-    for(i=2;i<4;i++) {
-      _tmp_BC[i] *= _delX;
+
+    for(j=0;j<2;j++) {
+      fscanf(fp,"%lf",&_tmp_BC[j]);
+    }
+    for(j=2;j<4;j++) {
+      fscanf(fp,"%lf",&_tmp_BC[j]);
+      _tmp_BC[j] *= _delX;
     }
     
     for(i=0;i<4;i++) {
