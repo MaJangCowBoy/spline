@@ -65,7 +65,7 @@ int main() {
   fp = fopen("something.txt","w"); 
 
   fprintf(fp,"%d\n",(_NPOINT-1));
-  fprintf(fp,"%lf\t%lf\n",_INTVX,_INTVY);
+  fprintf(fp,"%lf\t%lf\t%lf\n",_INTVX,_INTVY,_INTVZ);
   
   for(i=0;i<(_NPOINT-1);i++) 
     for(j=0;j<(_NPOINT-1);j++) {
