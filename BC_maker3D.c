@@ -99,7 +99,7 @@ int main() {
                                    *sin(a*M_PI*_Val_x[i])
                                    *sin(b*M_PI*_Val_y[j])
                                    *sin(c*M_PI*_Val_z[k]);                                  
-	            N++;
+	      N++;
             }
       }
   
