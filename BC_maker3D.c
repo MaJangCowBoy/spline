@@ -42,7 +42,7 @@ int main() {
   }
 	
   fclose(fp);
-/* From here... */
+
   for(i=0;i<_NPOINT;i++) 
     for(j=0;j<_NPOINT;j++) 
       for(k=0;k<_NPOINT;k++) {
