@@ -24,14 +24,16 @@ int main() {
     
     for(j=0;j<10;j++) {
       
-      _tmpX = j * _delX * 0.1;
+      _tmpX = j * 0.1;
       _tmpY = 0.0;
       
       for(k=0;k<4;k++) {
         _tmpY += coeff[k] * pow(_tmpX,k);
       }
       
+      _tmpX *= _delX;
       _tmpX += i * _delX;
+      
       printf("%lf\t%lf\n",_tmpX,_tmpY);
     }
   }  
