@@ -35,7 +35,7 @@ int main() {
     _Val_z[i] = 0.0;
     for(j=0;j<NL;j++) {
       _Val_y[i] += cos(M_PI*j*_Val_x[i]);
-      _Val_z[i] += -sin*M_PI*j*sin(M_PI*j*_Val_x[i]);
+      _Val_z[i] += -M_PI*j*sin(M_PI*j*_Val_x[i]);
     }
   }
   
