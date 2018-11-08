@@ -45,6 +45,9 @@ int main() {
   
   fp = fopen("something_else.txt","w");
   
+  fprintf(fp,"%d\n",_NL);
+  fprintf(fp,"%lf\n",_delX);
+  
   for(N=0;N<_NL;N++) {
     fprintf(fp,"%lf\t",_Coeff_a[0][N]);
     fprintf(fp,"%lf\t",_Coeff_a[1][N]);
