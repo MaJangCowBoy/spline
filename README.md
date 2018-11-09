@@ -26,3 +26,20 @@ fxz(0,0,0), fxz(1,0,0), fxz(0,1,0), fxz(1,1,0), fxz(0,0,1), fxz(1,0,1), fxz(0,1,
 fyz(0,0,0), fyz(1,0,0), fyz(0,1,0), fyz(1,1,0), fyz(0,0,1), fyz(1,0,1), fyz(0,1,1), fyz(1,1,1)
 fxyz(0,0,0), fxyz(1,0,0), fxyz(0,1,0), fxyz(1,1,0), fxyz(0,0,1), fxyz(1,0,1), fxyz(0,1,1), fxyz(1,1,1)
 
+# Coefficient Order
+
+1-D
+
+pow(X,0), pow(X,1), pow(X,2), pow(X,3)
+
+2-D
+
+pow(X,0) * pow(Y,0), pow(X,1) * pow(Y,0), pow(X,2) * pow(Y,0), pow(X,3) * pow(Y,0)
+pow(X,0) * pow(Y,1), pow(X,1) * pow(Y,1), pow(X,2) * pow(Y,1), pow(X,3) * pow(Y,1)
+pow(X,0) * pow(Y,2), pow(X,1) * pow(Y,2), pow(X,2) * pow(Y,2), pow(X,3) * pow(Y,2)
+pow(X,0) * pow(Y,3), pow(X,1) * pow(Y,3), pow(X,2) * pow(Y,3), pow(X,3) * pow(Y,3)
+
+3-D
+
+as follows..
+
