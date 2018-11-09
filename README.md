@@ -34,10 +34,10 @@ pow(X,0), pow(X,1), pow(X,2), pow(X,3)
 
 2-D
 
-pow(X,0) * pow(Y,0), pow(X,1) * pow(Y,0), pow(X,2) * pow(Y,0), pow(X,3) * pow(Y,0)
-pow(X,0) * pow(Y,1), pow(X,1) * pow(Y,1), pow(X,2) * pow(Y,1), pow(X,3) * pow(Y,1)
-pow(X,0) * pow(Y,2), pow(X,1) * pow(Y,2), pow(X,2) * pow(Y,2), pow(X,3) * pow(Y,2)
-pow(X,0) * pow(Y,3), pow(X,1) * pow(Y,3), pow(X,2) * pow(Y,3), pow(X,3) * pow(Y,3)
+pow(X,0)*pow(Y,0), pow(X,1)*pow(Y,0), pow(X,2)*pow(Y,0), pow(X,3)*pow(Y,0)
+pow(X,0)*pow(Y,1), pow(X,1)*pow(Y,1), pow(X,2)*pow(Y,1), pow(X,3)*pow(Y,1)
+pow(X,0)*pow(Y,2), pow(X,1)*pow(Y,2), pow(X,2)*pow(Y,2), pow(X,3)*pow(Y,2)
+pow(X,0)*pow(Y,3), pow(X,1)*pow(Y,3), pow(X,2)*pow(Y,3), pow(X,3)*pow(Y,3)
 
 3-D
 
