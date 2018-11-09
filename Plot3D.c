@@ -36,6 +36,7 @@ int main() {
               _tmpY = M * 0.1;
               _tmpZ = L * 0.1;
               
+              _tmpF = 0.0;
               for(a=0;a<64;a++) {
                 
                 Resd  = a % 4;
