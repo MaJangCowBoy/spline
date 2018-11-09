@@ -18,7 +18,7 @@ int main() {
   fscanf(fp,"%d",&_NL);
   fscanf(fp,"%lf",&_delX);
   fscanf(fp,"%lf",&_delY);
-  fscanf(fp,"%lf",&_delY);
+  fscanf(fp,"%lf",&_delZ);
   
   for(i=0;i<_NL;i++)
     for(j=0;j<_NL;j++) 
