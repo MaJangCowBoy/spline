@@ -11,7 +11,7 @@ int main() {
   int _NL;
   double _delX,_delY,_delZ;
   double _Val_x,_Val_y,_Val_z;
-  double _tmp_BC[16];         /* Boundary condition */
+  double _tmp_BC[64];         /* Boundary condition */
   FILE *fp;
   
   fp = fopen("something.txt","r");
