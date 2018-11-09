@@ -7,7 +7,7 @@ int main() {
   
   int i,j,k;
   int a,b,c;
-  int N,M;
+  int N,M,L;
   int _NL;
   double _delX,_delY,_delZ;
   double _Val_x,_Val_y,_Val_z;
