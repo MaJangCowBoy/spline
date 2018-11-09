@@ -24,7 +24,7 @@ int main() {
   int N,M,L;
   int a,b,c;
   int NL;
-  double _Val_x[_NPOINT][_NPOINT][_NPOINT], _Val_y[_NPOINT][_NPOINT][_NPOINT], _Val_y[_NPOINT][_NPOINT][_NPOINT];
+  double _Val_x[_NPOINT], _Val_y[_NPOINT], _Val_z[_NPOINT];
   double _Val_f[_NPOINT][_NPOINT][_NPOINT];
   double _Val_fx[_NPOINT][_NPOINT][_NPOINT], _Val_fy[_NPOINT][_NPOINT][_NPOINT], _Val_fz[_NPOINT][_NPOINT][_NPOINT];
   double _Val_fxy[_NPOINT][_NPOINT][_NPOINT], _Val_fxz[_NPOINT][_NPOINT][_NPOINT], _Val_fyz[_NPOINT][_NPOINT][_NPOINT];
