@@ -35,7 +35,7 @@ int main() {
           for(L=0;L<16;L++) {
             Quot = L/4;
             Resd = L%4;
-            _tmpZ += coeff[k] * pow(_tmpX,Resd) * pow(_tmpY,Quot);
+            _tmpZ += coeff[L] * pow(_tmpX,Resd) * pow(_tmpY,Quot);
           }
         
           _tmpX *= _delX;  _tmpX += i * _delX;
