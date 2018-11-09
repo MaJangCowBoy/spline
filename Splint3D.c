@@ -60,7 +60,7 @@ int main() {
         }        
         
         for(i=0;i<64;i++) {
-          _Coeff_a[i][N][M] = 0.0;
+          _Coeff_a[i][N][M][L] = 0.0;
         }
         
         for(i=0;i<64;i++) 
