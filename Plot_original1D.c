@@ -9,6 +9,7 @@ int main() {
   int a,b,c;
   int _NL;
   double _ValX,_ValY,_ValZ,_ValF;
+  double _delX,_delY,_delZ;
   double _tmpX,_tmpY,_tmpZ,_tmpF;
   FILE *fp;
   
@@ -27,9 +28,12 @@ int main() {
   
   fp = fopen("something","r");
   
-  fscanf();
+  fscanf(fp,"%d",_NL);
+  fscanf(fp,"%lf",_delX);
   
   fclose(fp);
+  
+  for(i=0;i<_)
 
   return 0;
 }
