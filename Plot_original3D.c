@@ -57,7 +57,10 @@ int main() {
                 resd  = a % _NL;
                 quot1 = a % (_NL*_NL);  quot1 = quot1 / _NL;
                 quot2 = a / (_NL*_NL); 
-                _ValF += _Coeff[a] * cos(resd*M_PI*_ValX) * cos(quot*M_PI*_ValY);
+                _ValF += _Coeff[a] 
+                        * cos(resd*M_PI*_ValX)
+                        * cos(quot1*M_PI*_ValY)
+                        * cos(quot2*M_PI*_ValZ);
               }
           
               fprintf(fp,"%lf\t%lf\t%lf\t%lf\n",_ValX,_ValY,_ValZ,_ValF);
