@@ -32,7 +32,7 @@ int main() {
   
   fscanf(fp,"%d",&_NL2);
   fscanf(fp,"%lf",&_delX);
-  fscanf(fp,"%lf",&_delX);  
+  fscanf(fp,"%lf",&_delY);  
   
   fclose(fp);
   
@@ -50,8 +50,8 @@ int main() {
           _ValF = 0.0;
           for(a=0;a<(_NL1);a++) {
             
-            resd = a / _NL; 
-            quot = a % _NL;  
+            resd = a % _NL; 
+            quot = a / _NL;  
             _Valf += _Coeff[a] * cos(resd*M_PI*_ValX) * cos(quot*M_PI*_ValY);
           }
           
