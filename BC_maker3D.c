@@ -49,7 +49,7 @@ int main() {
 	    
         _Val_x[i] = _INTVX * i;
         _Val_y[j] = _INTVY * j;
-        _Val_y[k] = _INTVZ * k;
+        _Val_z[k] = _INTVZ * k;
         
         _Val_f[i][j][k] = 0.0; 
         _Val_fx[i][j][k] = 0.0; _Val_fy[i][j][k] = 0.0; _Val_fz[i][j][k] = 0.0;
