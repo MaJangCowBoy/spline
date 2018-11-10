@@ -7,7 +7,7 @@ int main() {
   int i,j,k;
   int N,M,L;
   int a,b,c;
-  int _NL,_NX;
+  int _NL,_NL2;
   double _ValX,_ValY,_ValZ,_ValF;
   double _delX,_delY,_delZ;
   double _tmpX,_tmpY,_tmpZ,_tmpF;
@@ -28,14 +28,14 @@ int main() {
   
   fp = fopen("something.txt","r");
   
-  fscanf(fp,"%d",&_NX);
+  fscanf(fp,"%d",&_NL2);
   fscanf(fp,"%lf",&_delX);
   
   fclose(fp);
   
   fp = fopen("original.txt","w");
   
-  for(i=0;i<_NX;i++) {
+  for(i=0;i<_NL2;i++) {
   
     for(j=0;j<10;j++) {
     
