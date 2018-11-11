@@ -36,12 +36,12 @@ int main() {
     }
     
     for(i=0;i<4;i++) {
-      _Coeff_a[i][N] = 0.0;
+      _Coeff_a[i] = 0.0;
     }
     
     for(i=0;i<4;i++) 
       for(j=0;j<4;j++) {
-        _Coeff_a[i][N] += _C1[i][j]*_tmp_BC[j];
+        _Coeff_a[i] += _C1[i][j]*_tmp_BC[j];
       }
     
     for(i=0;i<4;i++) {
