@@ -5,7 +5,7 @@
 int main() {
   int i,j,k;
   int N,M,L;
-  FILE *fp;
+  FILE *fp,*fq;
   int _NL;
   int Quot,Resd;
   double _delX,_delY;
@@ -13,6 +13,7 @@ int main() {
   double _tmpX,_tmpY,_tmpZ;
 
   fp = fopen("something_else.txt","r");
+  fq = fopen("result.txt","w");
   
   fscanf(fp,"%d",&_NL);
   fscanf(fp,"%lf",&_delX);
@@ -41,11 +42,12 @@ int main() {
           _tmpX *= _delX;  _tmpX += i * _delX;
           _tmpY *= _delY;  _tmpY += j * _delY;
         
-          printf("%lf\t%lf\t%lf\n",_tmpX,_tmpY,_tmpZ);
+          fprintf(fq,"%lf\t%lf\t%lf\n",_tmpX,_tmpY,_tmpZ);
         }
     }  
 
   fclose(fp);
+  fclose(fq);
 
   return 0;
 }
