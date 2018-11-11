@@ -12,16 +12,20 @@ int main() {
   double _delX,_delY,_delZ;
   double _Val_x,_Val_y,_Val_z;
   double _tmp_BC[64];         /* Boundary condition */
-  FILE *fp;
+  FILE *fp,*fq;
   
   fp = fopen("something.txt","r");
-
+  fq = fopen("something_else.txt","w");
+  
   fscanf(fp,"%d",&_NL);
   fscanf(fp,"%lf",&_delX);
   fscanf(fp,"%lf",&_delY);
   fscanf(fp,"%lf",&_delZ);
   
-  double _Coeff_a[64][_NL][_NL][_NL];    /* Coefficient vector */
+  fprintf(fq,"%d\n",_NL);
+  fprintf(fq,"%lf\t%lf\t%lf\n",_delX,_delY,_delZ);
+  
+  double _Coeff_a[64];    /* Coefficient vector */
 /* From here */  
   for(N=0;N<_NL;N++) 
     for(M=0;M<_NL;M++) 
@@ -60,32 +64,22 @@ int main() {
         }        
         
         for(i=0;i<64;i++) {
-          _Coeff_a[i][N][M][L] = 0.0;
+          _Coeff_a[i] = 0.0;
         }
         
         for(i=0;i<64;i++) 
           for(j=0;j<64;j++) {
-            _Coeff_a[i][N][M][L] += _C3[i][j]*_tmp_BC[j];
+            _Coeff_a[i] += _C3[i][j]*_tmp_BC[j];
           }
-      }
-  
-  fclose(fp);
-  
-  fp = fopen("something_else.txt","w");
-  
-  fprintf(fp,"%d\n",_NL);
-  fprintf(fp,"%lf\t%lf\t%lf\n",_delX,_delY,_delZ);
-  
-  for(N=0;N<_NL;N++) 
-    for(M=0;M<_NL;M++)
-      for(L=0;L<_NL;L++) {
+        
         for(i=0;i<64;i++) {
-          fprintf(fp,"%lf\t",_Coeff_a[i][N][M][L]);
+          fprintf(fq,"%lf\t",_Coeff_a[i]);
         }
-        fprintf(fp,"\n");
+        fprintf(fq,"\n");
       }
   
   fclose(fp);
-  
+  fclose(fq);
+
   return 0;
 }
