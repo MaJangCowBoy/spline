@@ -23,7 +23,7 @@ int main() {
   int i,j,k;
   int N,M,L;
   int a,b,c;
-  int NL;
+  int NL,NR;
   double _Val_x[_NPOINT], _Val_y[_NPOINT], _Val_z[_NPOINT];
   double _Val_f[_NPOINT][_NPOINT][_NPOINT];
   double _Val_fx[_NPOINT][_NPOINT][_NPOINT], _Val_fy[_NPOINT][_NPOINT][_NPOINT], _Val_fz[_NPOINT][_NPOINT][_NPOINT];
@@ -56,10 +56,13 @@ int main() {
         _Val_fxy[i][j][k] = 0.0; _Val_fxz[i][j][k] = 0.0; _Val_fyz[i][j][k] = 0.0;
         _Val_fxyz[i][j][k] = 0.0;
 	    
-        N = 0;
-        for(a=0;a<NL;a++) 
-          for(b=0;b<NL;b++) 
-            for(c=0;c<NL;c++) {
+	NR = NL * NL * NL;
+        for(N=0;N<NL;N++) {
+		
+             a = N % NL;
+             b = N % (NL*NL);  b = b / NL; 
+             c = N / (NL*NL);
+		
               _Val_f[i][j][k] += coeff[N]
                                 *cos(a*M_PI*_Val_x[i])
                                 *cos(b*M_PI*_Val_y[j])
@@ -98,9 +101,8 @@ int main() {
               _Val_fxyz[i][j][k] += -a*b*c*M_PI*M_PI*M_PI*coeff[N]
                                    *sin(a*M_PI*_Val_x[i])
                                    *sin(b*M_PI*_Val_y[j])
-                                   *sin(c*M_PI*_Val_z[k]);                                  
-	      N++;
-            }
+                                   *sin(c*M_PI*_Val_z[k]);
+        }
       }
   
   fp = fopen("something.txt","w"); 
