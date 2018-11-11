@@ -5,13 +5,14 @@
 int main() {
   int i,j,k;
   int N,M,L;
-  FILE *fp;
+  FILE *fp,*fq;
   int _NL;
   double _delX;
   double coeff[4];
   double _tmpX,_tmpY;
 
   fp = fopen("something_else.txt","r");
+  fq = fopen("result.txt","w");
   
   fscanf(fp,"%d",&_NL);
   fscanf(fp,"%lf",&_delX);
@@ -34,11 +35,12 @@ int main() {
       _tmpX *= _delX;
       _tmpX += i * _delX;
       
-      printf("%lf\t%lf\n",_tmpX,_tmpY);
+      fprintf(fq,"%lf\t%lf\n",_tmpX,_tmpY);
     }
   }  
 
   fclose(fp);
+  fclose(fq);
 
   return 0;
 }
