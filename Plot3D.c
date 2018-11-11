@@ -51,7 +51,7 @@ int main() {
               _tmpY *= _delY;  _tmpY += j * _delY;
               _tmpZ *= _delZ;  _tmpZ += k * _delZ;
             
-              fprintf("%lf\t%lf\t%lf\t%lf\n",_tmpX,_tmpY,_tmpZ,_tmpF);
+              fprintf(fq,"%lf\t%lf\t%lf\t%lf\n",_tmpX,_tmpY,_tmpZ,_tmpF);
             }
         
       }  
