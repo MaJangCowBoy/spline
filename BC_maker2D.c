@@ -19,7 +19,7 @@ int main() {
   int i,j,k;
   int N,M;
   int a,b;
-  int NL;
+  int NL,NR;
   double _Val_x[_NPOINT], _Val_y[_NPOINT];
   double _Val_f[_NPOINT][_NPOINT];
   double _Val_fx[_NPOINT][_NPOINT], _Val_fy[_NPOINT][_NPOINT];
@@ -47,15 +47,15 @@ int main() {
       _Val_f[i][j] = 0.0; _Val_fx[i][j] = 0.0;
       _Val_fy[i][j] = 0.0; _Val_fxy[i][j] = 0.0;
 	    
-      N = 0;
-      for(a=0;a<NL;a++) 
-        for(b=0;b<NL;b++) {
-          _Val_f[i][j] += coeff[N]*cos(a*M_PI*_Val_x[i])*cos(b*M_PI*_Val_y[j]);
-          _Val_fx[i][j] += -a*M_PI*coeff[N]*sin(a*M_PI*_Val_x[i])*cos(b*M_PI*_Val_y[j]);
-          _Val_fy[i][j] += -b*M_PI*coeff[N]*cos(a*M_PI*_Val_x[i])*sin(b*M_PI*_Val_y[j]);
-          _Val_fxy[i][j] += a*b*M_PI*M_PI*coeff[N]*sin(a*M_PI*_Val_x[i])*sin(b*M_PI*_Val_y[j]);
-          N++;
-        }
+      NR = NL* NL;
+      for(N=0;N<NR;N++) {
+    
+        a = N % NL;  b = N / NL;
+        _Val_f[i][j] += coeff[N]*cos(a*M_PI*_Val_x[i])*cos(b*M_PI*_Val_y[j]);
+        _Val_fx[i][j] += -a*M_PI*coeff[N]*sin(a*M_PI*_Val_x[i])*cos(b*M_PI*_Val_y[j]);
+        _Val_fy[i][j] += -b*M_PI*coeff[N]*cos(a*M_PI*_Val_x[i])*sin(b*M_PI*_Val_y[j]);
+        _Val_fxy[i][j] += a*b*M_PI*M_PI*coeff[N]*sin(a*M_PI*_Val_x[i])*sin(b*M_PI*_Val_y[j]);
+      }
     }
   
   fp = fopen("something.txt","w"); 
