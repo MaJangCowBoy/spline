@@ -35,9 +35,11 @@ int main() {
 
   fscanf(fp,"%d",&NL);
 	
-  double coeff[NL*NL*NL];
+  NR = NL * NL * NL;
+	
+  double coeff[NR];
   
-  for(N=0;N<(NL*NL*NL);N++) {
+  for(N=0;N<NR;N++) {
     fscanf(fp,"%lf",&coeff[N]);  
   }
 	
@@ -56,8 +58,7 @@ int main() {
         _Val_fxy[i][j][k] = 0.0; _Val_fxz[i][j][k] = 0.0; _Val_fyz[i][j][k] = 0.0;
         _Val_fxyz[i][j][k] = 0.0;
 	    
-	NR = NL * NL * NL;
-        for(N=0;N<NL;N++) {
+        for(N=0;N<NR;N++) {
 		
              a = N % NL;
              b = N % (NL*NL);  b = b / NL; 
