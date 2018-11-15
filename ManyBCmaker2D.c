@@ -20,10 +20,11 @@ int main() {
   int N,M;
   int a,b;
   int NL,NR;
-  double _Val_x[_NPOINT], _Val_y[_NPOINT];
-  double _Val_f[_NPOINT][_NPOINT];
-  double _Val_fx[_NPOINT][_NPOINT], _Val_fy[_NPOINT][_NPOINT];
-  double _Val_fxy[_NPOINT][_NPOINT];
+  double _ValX, _ValY;
+  double _ValF[_NPOINT][_NPOINT];
+  double _ValFx[_NPOINT][_NPOINT], _ValFy[_NPOINT][_NPOINT];
+  double _ValFxx[_NPOINT][_NPOINT],_ValFyy[_NPOINT][_NPOINT],_ValFxy[_NPOINT][_NPOINT];
+  double _ValFxxy[_NPOINT][_NPOINT],_ValFyxy[_NPOINT][_NPOINT];
   FILE *fp;
 	
   fp = fopen("nothing.txt","r");
@@ -43,19 +44,23 @@ int main() {
   for(i=0;i<_NPOINT;i++) 
     for(j=0;j<_NPOINT;j++) {
 	    
-      _Val_x[i] = _INTVX * i;
-      _Val_y[j] = _INTVY * j;
+      _ValX = _INTVX * i;
+      _ValY = _INTVY * j;
       
-      _Val_f[i][j] = 0.0; _Val_fx[i][j] = 0.0;
-      _Val_fy[i][j] = 0.0; _Val_fxy[i][j] = 0.0;
+      _ValF[i][j] = 0.0; _ValFx[i][j] = 0.0;
+      _ValFy[i][j] = 0.0; _ValFxy[i][j] = 0.0;
 	    
       for(N=0;N<NR;N++) {
     
-        a = N % NL;  b = N / NL;
-        _Val_f[i][j] += coeff[N]*cos(a*M_PI*_Val_x[i])*cos(b*M_PI*_Val_y[j]);
-        _Val_fx[i][j] += -a*M_PI*coeff[N]*sin(a*M_PI*_Val_x[i])*cos(b*M_PI*_Val_y[j]);
-        _Val_fy[i][j] += -b*M_PI*coeff[N]*cos(a*M_PI*_Val_x[i])*sin(b*M_PI*_Val_y[j]);
-        _Val_fxy[i][j] += a*b*M_PI*M_PI*coeff[N]*sin(a*M_PI*_Val_x[i])*sin(b*M_PI*_Val_y[j]);
+        a = (N % NL) + 1;  b = (N / NL) + 1;
+        _ValF[i][j]    += coeff[N]*sin(a*M_PI*_ValX)*sin(b*M_PI*_ValY);
+        _ValFx[i][j]   += a*M_PI*coeff[N]*cos(a*M_PI*_ValX)*sin(b*M_PI*_ValY);
+        _ValFy[i][j]   += b*M_PI*coeff[N]*sin(a*M_PI*_ValX)*cos(b*M_PI*_ValY);
+        _ValFxy[i][j]  += a*b*M_PI*M_PI*coeff[N]*cos(a*M_PI*_ValX)*cos(b*M_PI*_ValY);
+        _ValFxx[i][j]  += -a*M_PI*a*M_PI*coeff[N]*sin(a*M_PI*_ValX)*sin(b*M_PI*_ValY);
+        _ValFyy[i][j]  += -b*M_PI*b*M_PI*coeff[N]*sin(a*M_PI*_ValX)*sin(b*M_PI*_ValY);
+        _ValFxxy[i][j] += -a*M_PI*a*M_PI*b*M_PI*coeff[N]*sin(a*M_PI*_ValX)*cos(b*M_PI*_ValY);
+        _ValFyxy[i][j] += -a*M_PI*b*M_PI*b*M_PI*coeff[N]*cos(a*M_PI*_ValX)*sin(b*M_PI*_ValY);
       }
     }
   
@@ -66,24 +71,76 @@ int main() {
   
   for(i=0;i<(_NPOINT-1);i++) 
     for(j=0;j<(_NPOINT-1);j++) {
-      fprintf(fp,"%lf\t",_Val_f[i][j]);
-      fprintf(fp,"%lf\t",_Val_f[i+1][j]);
-      fprintf(fp,"%lf\t",_Val_f[i][j+1]);
-      fprintf(fp,"%lf\t",_Val_f[i+1][j+1]);
-      fprintf(fp,"%lf\t",_Val_fx[i][j]);
-      fprintf(fp,"%lf\t",_Val_fx[i+1][j]);
-      fprintf(fp,"%lf\t",_Val_fx[i][j+1]);
-      fprintf(fp,"%lf\t",_Val_fx[i+1][j+1]);
-      fprintf(fp,"%lf\t",_Val_fy[i][j]);
-      fprintf(fp,"%lf\t",_Val_fy[i+1][j]);
-      fprintf(fp,"%lf\t",_Val_fy[i][j+1]);
-      fprintf(fp,"%lf\t",_Val_fy[i+1][j+1]);
-      fprintf(fp,"%lf\t",_Val_fxy[i][j]);
-      fprintf(fp,"%lf\t",_Val_fxy[i+1][j]);
-      fprintf(fp,"%lf\t",_Val_fxy[i][j+1]);
-      fprintf(fp,"%lf\n",_Val_fxy[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValF[i][j]);
+      fprintf(fp,"%lf\t",_ValF[i+1][j]);
+      fprintf(fp,"%lf\t",_ValF[i][j+1]);
+      fprintf(fp,"%lf\t",_ValF[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFx[i][j]);
+      fprintf(fp,"%lf\t",_ValFx[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFx[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFx[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFy[i][j]);
+      fprintf(fp,"%lf\t",_ValFy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFy[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFy[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFxy[i][j]);
+      fprintf(fp,"%lf\t",_ValFxy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFxy[i][j+1]);
+      fprintf(fp,"%lf\n",_ValFxy[i+1][j+1]);
     }
-	 
+  fclose(fp);
+	
+  fp = fopen("somethingX.txt","w"); 
+
+  fprintf(fp,"%d\n",(_NPOINT-1));
+  fprintf(fp,"%lf\t%lf\n",_INTVX,_INTVY);
+  
+  for(i=0;i<(_NPOINT-1);i++) 
+    for(j=0;j<(_NPOINT-1);j++) {
+      fprintf(fp,"%lf\t",_ValFx[i][j]);
+      fprintf(fp,"%lf\t",_ValFx[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFx[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFx[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFxx[i][j]);
+      fprintf(fp,"%lf\t",_ValFxx[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFxx[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFxx[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFxy[i][j]);
+      fprintf(fp,"%lf\t",_ValFxy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFxy[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFxy[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFxxy[i][j]);
+      fprintf(fp,"%lf\t",_ValFxxy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFxxy[i][j+1]);
+      fprintf(fp,"%lf\n",_ValFxxy[i+1][j+1]);
+    }
+  fclose(fp);
+	
+
+  fp = fopen("somethingY.txt","w"); 
+
+  fprintf(fp,"%d\n",(_NPOINT-1));
+  fprintf(fp,"%lf\t%lf\n",_INTVX,_INTVY);
+  
+  for(i=0;i<(_NPOINT-1);i++) 
+    for(j=0;j<(_NPOINT-1);j++) {
+      fprintf(fp,"%lf\t",_ValFy[i][j]);
+      fprintf(fp,"%lf\t",_ValFy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFy[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFy[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFxy[i][j]);
+      fprintf(fp,"%lf\t",_ValFxy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFxy[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFxy[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFyy[i][j]);
+      fprintf(fp,"%lf\t",_ValFyy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFyy[i][j+1]);
+      fprintf(fp,"%lf\t",_ValFyy[i+1][j+1]);
+      fprintf(fp,"%lf\t",_ValFyxy[i][j]);
+      fprintf(fp,"%lf\t",_ValFyxy[i+1][j]);
+      fprintf(fp,"%lf\t",_ValFyxy[i][j+1]);
+      fprintf(fp,"%lf\n",_ValFyxy[i+1][j+1]);
+    }
   fclose(fp);
     
   return 0;
