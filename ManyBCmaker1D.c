@@ -33,10 +33,10 @@ int main() {
     _ValF[i] = 0.0;
     _ValFx[i] = 0.0;
     _ValFxx[i] = 0.0;
-    for(j=0;j<NL;j++) {
-      _ValF[i] += coeff[j]*sin(M_PI*j*_Val_x[i]);
-      _ValFx[i] += coeff[j]*M_PI*j*cos(M_PI*j*_Val_x[i]);
-      _ValFxx[i] += -coeff[j]*M_PI*j*M_PI*j*sin(M_PI*j*_Val_x[i]);
+    for(j=1;j<=NL;j++) {
+      _ValF[i] += coeff[j-1]*sin(M_PI*j*_Val_x[i]);
+      _ValFx[i] += coeff[j-1]*M_PI*j*cos(M_PI*j*_Val_x[i]);
+      _ValFxx[i] += -coeff[j-1]*M_PI*j*M_PI*j*sin(M_PI*j*_Val_x[i]);
     }
   }
   
