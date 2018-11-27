@@ -24,7 +24,7 @@ int main() {
   int N,M,L;
   int a,b,c;
   int NL;
-  double _ValX[_NPOINT], _ValY[_NPOINT], _ValZ[_NPOINT];
+  double _ValX, _ValY, _ValZ;
   double _ValF[_NPOINT][_NPOINT][_NPOINT];
   double _ValFx[_NPOINT][_NPOINT][_NPOINT], _ValFy[_NPOINT][_NPOINT][_NPOINT], _ValFz[_NPOINT][_NPOINT][_NPOINT];
   double _ValFxy[_NPOINT][_NPOINT][_NPOINT], _ValFxz[_NPOINT][_NPOINT][_NPOINT], _ValFyz[_NPOINT][_NPOINT][_NPOINT];
@@ -49,9 +49,9 @@ int main() {
     for(j=0;j<_NPOINT;j++) 
       for(k=0;k<_NPOINT;k++) {
 	    
-        _ValX[i] = _INTVX * i;
-        _ValY[j] = _INTVY * j;
-        _ValZ[k] = _INTVZ * k;
+        _ValX = _INTVX * i;
+        _ValY = _INTVY * j;
+        _ValZ = _INTVZ * k;
         
         _ValF[i][j][k] = 0.0; 
         _ValFx[i][j][k] = 0.0; _ValFy[i][j][k] = 0.0; _ValFz[i][j][k] = 0.0;
@@ -63,50 +63,93 @@ int main() {
             for(L = 0; L < NL; L++) {
 		
               _ValF[i][j][k] += coeff[N][M][L]
-                              * sin( (N+1)*M_PI*_ValX[i] )
-                              * sin( (M+1)*M_PI*_ValY[j] )
-                              * sin( (L+1)*M_PI*_ValZ[k] );
+                              * sin( (N+1)*M_PI*_ValX )
+                              * sin( (M+1)*M_PI*_ValY )
+                              * sin( (L+1)*M_PI*_ValZ );
                                 
               _ValFx[i][j][k] += (N+1) * M_PI * coeff[N][M][L]
-                               * cos( (N+1)*M_PI*_ValX[i] )
-                               * sin( (M+1)*M_PI*_ValY[j] )
-                               * sin( (L+1)*M_PI*_ValZ[k] );
+                               * cos( (N+1)*M_PI*_ValX )
+                               * sin( (M+1)*M_PI*_ValY )
+                               * sin( (L+1)*M_PI*_ValZ );
 
               _ValFy[i][j][k] += (M+1) * M_PI * coeff[N][M][L]
-                               * sin( (N+1)*M_PI*_ValX[i] )
-                               * cos( (M+1)*M_PI*_ValY[j] )
-                               * sin( (L+1)*M_PI*_ValZ[k] );
+                               * sin( (N+1)*M_PI*_ValX )
+                               * cos( (M+1)*M_PI*_ValY )
+                               * sin( (L+1)*M_PI*_ValZ );
                                  
               _ValFz[i][j][k] += (L+1) * M_PI * coeff[N][M][L]
-                               * sin( (N+1)*M_PI*_ValX[i] )
-                               * sin( (M+1)*M_PI*_ValY[j] )
-                               * cos( (L+1)*M_PI*_ValZ[k] );
+                               * sin( (N+1)*M_PI*_ValX )
+                               * sin( (M+1)*M_PI*_ValY )
+                               * cos( (L+1)*M_PI*_ValZ );
                                  
               _ValFxy[i][j][k] += (N+1) * (M+1) * M_PI * M_PI
                                 * coeff[N][M][L]
-                                * cos( (N+1)*M_PI*_ValX[i] )
-                                * cos( (M+1)*M_PI*_ValY[j] )
-                                * sin( (L+1)*M_PI*_ValZ[k] );
+                                * cos( (N+1)*M_PI*_ValX )
+                                * cos( (M+1)*M_PI*_ValY )
+                                * sin( (L+1)*M_PI*_ValZ );
                                   
               _ValFxz[i][j][k] += (N+1) * (L+1) * M_PI * M_PI
                                 * coeff[N][M][L]
-                                * cos( (N+1)*M_PI*_ValX[i] )
-                                * sin( (M+1)*M_PI*_ValY[j] )
-                                * cos( (L+1)*M_PI*_ValZ[k] );
+                                * cos( (N+1)*M_PI*_ValX )
+                                * sin( (M+1)*M_PI*_ValY )
+                                * cos( (L+1)*M_PI*_ValZ );
                                   
               _ValFyz[i][j][k] += (M+1) * (L+1) * M_PI * M_PI
                                 * coeff[N][M][L]
-                                * sin( (N+1)*M_PI*_ValX[i] )
-                                * cos( (M+1)*M_PI*_ValY[j] )
-                                * cos( (L+1)*M_PI*_ValZ[k] );
+                                * sin( (N+1)*M_PI*_ValX )
+                                * cos( (M+1)*M_PI*_ValY )
+                                * cos( (L+1)*M_PI*_ValZ );
                                   
               _ValFxyz[i][j][k] += (N+1) * (M+1) * (L+1)
                                  * M_PI * M_PI * M_PI
                                  * coeff[N][M][L]
-                                 * cos( (N+1)*M_PI*_ValX[i] )
-                                 * cos( (M+1)*M_PI*_ValY[j] )
-                                 * cos( (L+1)*M_PI*_ValZ[k] );
+                                 * cos( (N+1)*M_PI*_ValX )
+                                 * cos( (M+1)*M_PI*_ValY )
+                                 * cos( (L+1)*M_PI*_ValZ );
             }
+            
+            if( _ValX < 0.1 ) {
+              Fc = ( 1 - cos(10*M_PI*_ValX) ) * 0.5;
+              _ValF *= Fc;
+              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
+              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
+              _ValFxyz *= Fc;
+              
+            } else if( _ValX > 0.9 ) {
+              Fc = ( 1 + cos(10*M_PI*(_ValX-0.9)) ) * 0.5;
+              _ValF *= Fc;
+              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
+              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
+              _ValFxyz *= Fc;
+            } else {    }
+            
+            if ( _ValY < 0.1 ) {
+              Fc = ( 1 - cos(10*M_PI*_ValY) ) * 0.5;
+              _ValF *= Fc;
+              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
+              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
+              _ValFxyz *= Fc;
+            } else if( _ValY > 0.9 ) {
+              Fc = ( 1 + cos(10*M_PI*(_ValY-0.9)) ) * 0.5;
+              _ValF *= Fc;
+              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
+              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
+              _ValFxyz *= Fc;
+            } else {    }
+            
+            if ( _ValZ < 0.1 ) {
+              Fc = ( 1 - cos(10*M_PI*_ValZ) ) * 0.5;
+              _ValF *= Fc;
+              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
+              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
+              _ValFxyz *= Fc;      
+            } else if( _ValZ > 0.9 ) {
+              Fc = ( 1 + cos(10*M_PI*(_ValZ-0.9)) ) * 0.5;
+              _ValF *= Fc;
+              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
+              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
+              _ValFxyz *= Fc;
+            } else {    }
       }
   
   fp = fopen("something.txt","w"); 
