@@ -8,6 +8,7 @@ int main() {
   int N,M,L;
   int a,b,c;
   int _NL,_NR;
+  double Fc;
   double _ValX,_ValY,_ValZ,_ValF;
   double _delX,_delY,_delZ;
   double _tmpX,_tmpY,_tmpZ,_tmpF;
@@ -59,6 +60,30 @@ int main() {
                              * sin( (b+1)*M_PI*_ValY )
                              * sin( (c+1)*M_PI*_ValZ );
                     }
+                    
+              if( _ValX < 0.1 ) {
+                Fc = ( 1 - cos(10*M_PI*_ValX) ) * 0.5;
+                _ValF *= Fc;
+              } else if( _ValX > 0.9 ) {
+                Fc = ( 1 + cos(10*M_PI*(_ValX-0.9)) ) * 0.5;
+                _ValF *= Fc;
+              } else {    }
+                    
+              if( _ValY < 0.1 ) {
+                Fc = ( 1 - cos(10*M_PI*_ValY) ) * 0.5;
+                _ValF *= Fc;
+              } else if( _ValY > 0.9 ) {
+                Fc = ( 1 + cos(10*M_PI*(_ValY-0.9)) ) * 0.5;
+                _ValF *= Fc;
+              } else {    }
+              
+              if( _ValZ < 0.1 ) {
+                Fc = ( 1 - cos(10*M_PI*_ValZ) ) * 0.5;
+                _ValF *= Fc;
+              } else if( _ValZ > 0.9 ) {
+                Fc = ( 1 + cos(10*M_PI*(_ValZ-0.9)) ) * 0.5;
+                _ValF *= Fc;
+              } else {    }
                     
               fprintf(fp,"%lf\t%lf\t%lf\t%lf\n",_ValX,_ValY,_ValZ,_ValF);
             }
