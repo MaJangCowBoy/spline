@@ -14,7 +14,7 @@ int main() {
 
   int i,j,k;
   int NL;
-  double _Val_x[_NPOINT], _Val_y[_NPOINT], _Val_z[_NPOINT];
+  double _ValX[_NPOINT], _ValF[_NPOINT], _ValFx[_NPOINT];
   FILE *fp;
 	
   fp = fopen("nothing.txt","r");
@@ -30,12 +30,12 @@ int main() {
   fclose(fp);
 	
   for(i=0;i<_NPOINT;i++) {
-    _Val_x[i] = _INTV * i;
-    _Val_y[i] = 0.0;
-    _Val_z[i] = 0.0;
+    _ValX[i] = _INTV * i;
+    _ValF[i] = 0.0;
+    _ValFx[i] = 0.0;
     for(j=0;j<NL;j++) {
-      _Val_y[i] += coeff[j]*cos(M_PI*j*_Val_x[i]);
-      _Val_z[i] += -coeff[j]*M_PI*j*sin(M_PI*j*_Val_x[i]);
+      _ValF[i] += coeff[j]*cos(M_PI*j*_ValX[i]);
+      _ValFx[i] += -coeff[j]*M_PI*j*sin(M_PI*j*_ValX[i]);
     }
   }
   
@@ -45,10 +45,10 @@ int main() {
   fprintf(fp,"%lf\n",_INTV);
   
   for(i=0;i<(_NPOINT-1);i++) {
-    fprintf(fp,"%lf\t",_Val_y[i]);
-    fprintf(fp,"%lf\t",_Val_y[i+1]);
-    fprintf(fp,"%lf\t",_Val_z[i]);
-    fprintf(fp,"%lf\n",_Val_z[i+1]);
+    fprintf(fp,"%lf\t",_ValF[i]);
+    fprintf(fp,"%lf\t",_ValF[i+1]);
+    fprintf(fp,"%lf\t",_ValFx[i]);
+    fprintf(fp,"%lf\n",_ValFx[i+1]);
   }
 	 
   fclose(fp);
