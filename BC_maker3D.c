@@ -24,6 +24,7 @@ int main() {
   int N,M,L;
   int a,b,c;
   int NL;
+  double Fc;
   double _ValX, _ValY, _ValZ;
   double _ValF[_NPOINT][_NPOINT][_NPOINT];
   double _ValFx[_NPOINT][_NPOINT][_NPOINT], _ValFy[_NPOINT][_NPOINT][_NPOINT], _ValFz[_NPOINT][_NPOINT][_NPOINT];
@@ -110,45 +111,50 @@ int main() {
             
             if( _ValX < 0.1 ) {
               Fc = ( 1 - cos(10*M_PI*_ValX) ) * 0.5;
-              _ValF *= Fc;
-              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
-              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
-              _ValFxyz *= Fc;
+              _ValF[i][j][k] *= Fc;
+              _ValFx[i][j][k] *= Fc;  _ValFy[i][j][k] *= Fc;  _ValFz[i][j][k] *= Fc;
+              _ValFxy[i][j][k] *= Fc;  _ValFxz[i][j][k] *= Fc;  _ValFyz[i][j][k] *= Fc;
+              _ValFxyz[i][j][k] *= Fc;
               
             } else if( _ValX > 0.9 ) {
               Fc = ( 1 + cos(10*M_PI*(_ValX-0.9)) ) * 0.5;
-              _ValF *= Fc;
-              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
-              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
-              _ValFxyz *= Fc;
+              _ValF[i][j][k] *= Fc;
+              _ValFx[i][j][k] *= Fc;  _ValFy[i][j][k] *= Fc;  _ValFz[i][j][k] *= Fc;
+              _ValFxy[i][j][k] *= Fc;  _ValFxz[i][j][k] *= Fc;  _ValFyz[i][j][k] *= Fc;
+              _ValFxyz[i][j][k] *= Fc;
+              
             } else {    }
             
             if ( _ValY < 0.1 ) {
               Fc = ( 1 - cos(10*M_PI*_ValY) ) * 0.5;
-              _ValF *= Fc;
-              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
-              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
-              _ValFxyz *= Fc;
+              _ValF[i][j][k] *= Fc;
+              _ValFx[i][j][k] *= Fc;  _ValFy[i][j][k] *= Fc;  _ValFz[i][j][k] *= Fc;
+              _ValFxy[i][j][k] *= Fc;  _ValFxz[i][j][k] *= Fc;  _ValFyz[i][j][k] *= Fc;
+              _ValFxyz[i][j][k] *= Fc;
+              
             } else if( _ValY > 0.9 ) {
               Fc = ( 1 + cos(10*M_PI*(_ValY-0.9)) ) * 0.5;
-              _ValF *= Fc;
-              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
-              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
-              _ValFxyz *= Fc;
+              _ValF[i][j][k] *= Fc;
+              _ValFx[i][j][k] *= Fc;  _ValFy[i][j][k] *= Fc;  _ValFz[i][j][k] *= Fc;
+              _ValFxy[i][j][k] *= Fc;  _ValFxz[i][j][k] *= Fc;  _ValFyz[i][j][k] *= Fc;
+              _ValFxyz[i][j][k] *= Fc;
+              
             } else {    }
             
             if ( _ValZ < 0.1 ) {
               Fc = ( 1 - cos(10*M_PI*_ValZ) ) * 0.5;
-              _ValF *= Fc;
-              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
-              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
-              _ValFxyz *= Fc;      
+              _ValF[i][j][k] *= Fc;
+              _ValFx[i][j][k] *= Fc;  _ValFy[i][j][k] *= Fc;  _ValFz[i][j][k] *= Fc;
+              _ValFxy[i][j][k] *= Fc;  _ValFxz[i][j][k] *= Fc;  _ValFyz[i][j][k] *= Fc;
+              _ValFxyz[i][j][k] *= Fc;
+              
             } else if( _ValZ > 0.9 ) {
               Fc = ( 1 + cos(10*M_PI*(_ValZ-0.9)) ) * 0.5;
-              _ValF *= Fc;
-              _ValFx *= Fc;  _ValFy *= Fc;  _ValFz *= Fc;
-              _ValFxy *= Fc;  _ValFxz *= Fc;  _ValFyz *= Fc;
-              _ValFxyz *= Fc;
+              _ValF[i][j][k] *= Fc;
+              _ValFx[i][j][k] *= Fc;  _ValFy[i][j][k] *= Fc;  _ValFz[i][j][k] *= Fc;
+              _ValFxy[i][j][k] *= Fc;  _ValFxz[i][j][k] *= Fc;  _ValFyz[i][j][k] *= Fc;
+              _ValFxyz[i][j][k] *= Fc;
+              
             } else {    }
       }
   
