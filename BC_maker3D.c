@@ -24,11 +24,11 @@ int main() {
   int N,M,L;
   int a,b,c;
   int NL,NR;
-  double _Val_x[_NPOINT], _Val_y[_NPOINT], _Val_z[_NPOINT];
-  double _Val_f[_NPOINT][_NPOINT][_NPOINT];
-  double _Val_fx[_NPOINT][_NPOINT][_NPOINT], _Val_fy[_NPOINT][_NPOINT][_NPOINT], _Val_fz[_NPOINT][_NPOINT][_NPOINT];
-  double _Val_fxy[_NPOINT][_NPOINT][_NPOINT], _Val_fxz[_NPOINT][_NPOINT][_NPOINT], _Val_fyz[_NPOINT][_NPOINT][_NPOINT];
-  double _Val_fxyz[_NPOINT][_NPOINT][_NPOINT];
+  double _ValX[_NPOINT], _ValY[_NPOINT], _ValZ[_NPOINT];
+  double _ValF[_NPOINT][_NPOINT][_NPOINT];
+  double _ValFx[_NPOINT][_NPOINT][_NPOINT], _ValFy[_NPOINT][_NPOINT][_NPOINT], _ValFz[_NPOINT][_NPOINT][_NPOINT];
+  double _ValFxy[_NPOINT][_NPOINT][_NPOINT], _ValFxz[_NPOINT][_NPOINT][_NPOINT], _ValFyz[_NPOINT][_NPOINT][_NPOINT];
+  double _ValFxyz[_NPOINT][_NPOINT][_NPOINT];
   FILE *fp;
 	
   fp = fopen("nothing.txt","r");
@@ -49,14 +49,14 @@ int main() {
     for(j=0;j<_NPOINT;j++) 
       for(k=0;k<_NPOINT;k++) {
 	    
-        _Val_x[i] = _INTVX * i;
-        _Val_y[j] = _INTVY * j;
-        _Val_z[k] = _INTVZ * k;
+        _ValX[i] = _INTVX * i;
+        _ValY[j] = _INTVY * j;
+        _ValZ[k] = _INTVZ * k;
         
-        _Val_f[i][j][k] = 0.0; 
-        _Val_fx[i][j][k] = 0.0; _Val_fy[i][j][k] = 0.0; _Val_fz[i][j][k] = 0.0;
-        _Val_fxy[i][j][k] = 0.0; _Val_fxz[i][j][k] = 0.0; _Val_fyz[i][j][k] = 0.0;
-        _Val_fxyz[i][j][k] = 0.0;
+        _ValF[i][j][k] = 0.0; 
+        _ValFx[i][j][k] = 0.0; _ValFy[i][j][k] = 0.0; _ValFz[i][j][k] = 0.0;
+        _ValFxy[i][j][k] = 0.0; _ValFxz[i][j][k] = 0.0; _ValFyz[i][j][k] = 0.0;
+        _ValFxyz[i][j][k] = 0.0;
 	    
         for(N=0;N<NR;N++) {
 		
@@ -64,45 +64,45 @@ int main() {
              b = N % (NL*NL);  b = b / NL; 
              c = N / (NL*NL);
 		
-              _Val_f[i][j][k] += coeff[N]
-                                *cos(a*M_PI*_Val_x[i])
-                                *cos(b*M_PI*_Val_y[j])
-                                *cos(c*M_PI*_Val_z[k]);
+              _ValF[i][j][k] += coeff[N]
+                                *cos(a*M_PI*_ValX[i])
+                                *cos(b*M_PI*_ValY[j])
+                                *cos(c*M_PI*_ValZ[k]);
                                 
-              _Val_fx[i][j][k] += -a*M_PI*coeff[N]
-                                 *sin(a*M_PI*_Val_x[i])
-                                 *cos(b*M_PI*_Val_y[j])
-                                 *cos(c*M_PI*_Val_z[k]);
+              _ValFx[i][j][k] += -a*M_PI*coeff[N]
+                                 *sin(a*M_PI*_ValX[i])
+                                 *cos(b*M_PI*_ValY[j])
+                                 *cos(c*M_PI*_ValZ[k]);
 
-              _Val_fy[i][j][k] += -b*M_PI*coeff[N]
-                                 *cos(a*M_PI*_Val_x[i])
-                                 *sin(b*M_PI*_Val_y[j])
-                                 *cos(c*M_PI*_Val_z[k]);
+              _ValFy[i][j][k] += -b*M_PI*coeff[N]
+                                 *cos(a*M_PI*_ValX[i])
+                                 *sin(b*M_PI*_ValY[j])
+                                 *cos(c*M_PI*_ValZ[k]);
                                  
-              _Val_fz[i][j][k] += -c*M_PI*coeff[N]
-                                 *cos(a*M_PI*_Val_x[i])
-                                 *cos(b*M_PI*_Val_y[j])
-                                 *sin(c*M_PI*_Val_z[k]);
+              _ValFz[i][j][k] += -c*M_PI*coeff[N]
+                                 *cos(a*M_PI*_ValX[i])
+                                 *cos(b*M_PI*_ValY[j])
+                                 *sin(c*M_PI*_ValZ[k]);
                                  
-              _Val_fxy[i][j][k] += a*b*M_PI*M_PI*coeff[N]
-                                  *sin(a*M_PI*_Val_x[i])
-                                  *sin(b*M_PI*_Val_y[j])
-                                  *cos(c*M_PI*_Val_z[k]);
+              _ValFxy[i][j][k] += a*b*M_PI*M_PI*coeff[N]
+                                  *sin(a*M_PI*_ValX[i])
+                                  *sin(b*M_PI*_ValY[j])
+                                  *cos(c*M_PI*_ValZ[k]);
                                   
-              _Val_fxz[i][j][k] += a*c*M_PI*M_PI*coeff[N]
-                                  *sin(a*M_PI*_Val_x[i])
-                                  *cos(b*M_PI*_Val_y[j])
-                                  *sin(c*M_PI*_Val_z[k]);
+              _ValFxz[i][j][k] += a*c*M_PI*M_PI*coeff[N]
+                                  *sin(a*M_PI*_ValX[i])
+                                  *cos(b*M_PI*_ValY[j])
+                                  *sin(c*M_PI*_ValZ[k]);
                                   
-              _Val_fyz[i][j][k] += b*c*M_PI*M_PI*coeff[N]
-                                  *cos(a*M_PI*_Val_x[i])
-                                  *sin(b*M_PI*_Val_y[j])
-                                  *sin(c*M_PI*_Val_z[k]);
+              _ValFyz[i][j][k] += b*c*M_PI*M_PI*coeff[N]
+                                  *cos(a*M_PI*_ValX[i])
+                                  *sin(b*M_PI*_ValY[j])
+                                  *sin(c*M_PI*_ValZ[k]);
                                   
-              _Val_fxyz[i][j][k] += -a*b*c*M_PI*M_PI*M_PI*coeff[N]
-                                   *sin(a*M_PI*_Val_x[i])
-                                   *sin(b*M_PI*_Val_y[j])
-                                   *sin(c*M_PI*_Val_z[k]);
+              _ValFxyz[i][j][k] += -a*b*c*M_PI*M_PI*M_PI*coeff[N]
+                                   *sin(a*M_PI*_ValX[i])
+                                   *sin(b*M_PI*_ValY[j])
+                                   *sin(c*M_PI*_ValZ[k]);
         }
       }
   
@@ -114,45 +114,45 @@ int main() {
   for(i=0;i<(_NPOINT-1);i++) 
     for(j=0;j<(_NPOINT-1);j++) 
       for(k=0;k<(_NPOINT-1);k++) {
-        fprintf(fp,"%lf\t",_Val_f[i][j][k]);  fprintf(fp,"%lf\t",_Val_f[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_f[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_f[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_f[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_f[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_f[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_f[i+1][j+1][k+1]);
+        fprintf(fp,"%lf\t",_ValF[i][j][k]);  fprintf(fp,"%lf\t",_ValF[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValF[i][j+1][k]);  fprintf(fp,"%lf\t",_ValF[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValF[i][j][k+1]);  fprintf(fp,"%lf\t",_ValF[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValF[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValF[i+1][j+1][k+1]);
       
-        fprintf(fp,"%lf\t",_Val_fx[i][j][k]);  fprintf(fp,"%lf\t",_Val_fx[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fx[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fx[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fx[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fx[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fx[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_fx[i+1][j+1][k+1]);
+        fprintf(fp,"%lf\t",_ValFx[i][j][k]);  fprintf(fp,"%lf\t",_ValFx[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFx[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFx[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFx[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFx[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFx[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValFx[i+1][j+1][k+1]);
         
-        fprintf(fp,"%lf\t",_Val_fy[i][j][k]);  fprintf(fp,"%lf\t",_Val_fy[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fy[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fy[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fy[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fy[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fy[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_fy[i+1][j+1][k+1]);
+        fprintf(fp,"%lf\t",_ValFy[i][j][k]);  fprintf(fp,"%lf\t",_ValFy[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFy[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFy[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFy[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFy[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFy[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValFy[i+1][j+1][k+1]);
 
-        fprintf(fp,"%lf\t",_Val_fz[i][j][k]);  fprintf(fp,"%lf\t",_Val_fz[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fz[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fz[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fz[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fz[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fz[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_fz[i+1][j+1][k+1]);
+        fprintf(fp,"%lf\t",_ValFz[i][j][k]);  fprintf(fp,"%lf\t",_ValFz[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFz[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFz[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFz[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFz[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFz[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValFz[i+1][j+1][k+1]);
         
-        fprintf(fp,"%lf\t",_Val_fxy[i][j][k]);  fprintf(fp,"%lf\t",_Val_fxy[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fxy[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fxy[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fxy[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fxy[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fxy[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_fxy[i+1][j+1][k+1]);
+        fprintf(fp,"%lf\t",_ValFxy[i][j][k]);  fprintf(fp,"%lf\t",_ValFxy[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFxy[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFxy[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFxy[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFxy[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFxy[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValFxy[i+1][j+1][k+1]);
         
-        fprintf(fp,"%lf\t",_Val_fxz[i][j][k]);  fprintf(fp,"%lf\t",_Val_fxz[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fxz[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fxz[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fxz[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fxz[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fxz[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_fxz[i+1][j+1][k+1]);        
+        fprintf(fp,"%lf\t",_ValFxz[i][j][k]);  fprintf(fp,"%lf\t",_ValFxz[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFxz[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFxz[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFxz[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFxz[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFxz[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValFxz[i+1][j+1][k+1]);        
 
-        fprintf(fp,"%lf\t",_Val_fyz[i][j][k]);  fprintf(fp,"%lf\t",_Val_fyz[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fyz[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fyz[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fyz[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fyz[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fyz[i][j+1][k+1]);  fprintf(fp,"%lf\t",_Val_fyz[i+1][j+1][k+1]);
+        fprintf(fp,"%lf\t",_ValFyz[i][j][k]);  fprintf(fp,"%lf\t",_ValFyz[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFyz[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFyz[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFyz[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFyz[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFyz[i][j+1][k+1]);  fprintf(fp,"%lf\t",_ValFyz[i+1][j+1][k+1]);
         
-        fprintf(fp,"%lf\t",_Val_fxyz[i][j][k]);  fprintf(fp,"%lf\t",_Val_fxyz[i+1][j][k]);
-        fprintf(fp,"%lf\t",_Val_fxyz[i][j+1][k]);  fprintf(fp,"%lf\t",_Val_fxyz[i+1][j+1][k]);
-        fprintf(fp,"%lf\t",_Val_fxyz[i][j][k+1]);  fprintf(fp,"%lf\t",_Val_fxyz[i+1][j][k+1]);
-        fprintf(fp,"%lf\t",_Val_fxyz[i][j+1][k+1]);  fprintf(fp,"%lf\n",_Val_fxyz[i+1][j+1][k+1]);        
+        fprintf(fp,"%lf\t",_ValFxyz[i][j][k]);  fprintf(fp,"%lf\t",_ValFxyz[i+1][j][k]);
+        fprintf(fp,"%lf\t",_ValFxyz[i][j+1][k]);  fprintf(fp,"%lf\t",_ValFxyz[i+1][j+1][k]);
+        fprintf(fp,"%lf\t",_ValFxyz[i][j][k+1]);  fprintf(fp,"%lf\t",_ValFxyz[i+1][j][k+1]);
+        fprintf(fp,"%lf\t",_ValFxyz[i][j+1][k+1]);  fprintf(fp,"%lf\n",_ValFxyz[i+1][j+1][k+1]);        
       }
 	 
   fclose(fp);
