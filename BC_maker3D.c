@@ -23,7 +23,7 @@ int main() {
   int i,j,k;
   int N,M,L;
   int a,b,c;
-  int NL,NR;
+  int NL;
   double _ValX[_NPOINT], _ValY[_NPOINT], _ValZ[_NPOINT];
   double _ValF[_NPOINT][_NPOINT][_NPOINT];
   double _ValFx[_NPOINT][_NPOINT][_NPOINT], _ValFy[_NPOINT][_NPOINT][_NPOINT], _ValFz[_NPOINT][_NPOINT][_NPOINT];
@@ -34,14 +34,14 @@ int main() {
   fp = fopen("nothing.txt","r");
 
   fscanf(fp,"%d",&NL);
-	
-  NR = NL * NL * NL;
-	
-  double coeff[NR];
   
-  for(N=0;N<NR;N++) {
-    fscanf(fp,"%lf",&coeff[N]);  
-  }
+  double coeff[NL][NL][NL];
+  
+  for(N = 0; N < NL; N++) 
+    for(M =0; M < NL; M++)
+      for(L = 0; L < NL; L++) {
+        fscanf(fp,"%lf",&coeff[N][M][L]);  
+      }
 	
   fclose(fp);
 
@@ -58,52 +58,55 @@ int main() {
         _ValFxy[i][j][k] = 0.0; _ValFxz[i][j][k] = 0.0; _ValFyz[i][j][k] = 0.0;
         _ValFxyz[i][j][k] = 0.0;
 	    
-        for(N=0;N<NR;N++) {
+        for(N = 0; N < NL; N++) 
+          for(M = 0; M < NL; M++)  
+            for(L = 0; L < NL; L++) {
 		
-             a = N % NL;
-             b = N % (NL*NL);  b = b / NL; 
-             c = N / (NL*NL);
-		
-              _ValF[i][j][k] += coeff[N]
-                                *cos(a*M_PI*_ValX[i])
-                                *cos(b*M_PI*_ValY[j])
-                                *cos(c*M_PI*_ValZ[k]);
+              _ValF[i][j][k] += coeff[N][M][L]
+                              * sin( (N+1)*M_PI*_ValX[i] )
+                              * sin( (M+1)*M_PI*_ValY[j] )
+                              * sin( (L+1)*M_PI*_ValZ[k] );
                                 
-              _ValFx[i][j][k] += -a*M_PI*coeff[N]
-                                 *sin(a*M_PI*_ValX[i])
-                                 *cos(b*M_PI*_ValY[j])
-                                 *cos(c*M_PI*_ValZ[k]);
+              _ValFx[i][j][k] += (N+1) * M_PI * coeff[N][M][L]
+                               * cos( (N+1)*M_PI*_ValX[i] )
+                               * sin( (M+1)*M_PI*_ValY[j] )
+                               * sin( (L+1)*M_PI*_ValZ[k] );
 
-              _ValFy[i][j][k] += -b*M_PI*coeff[N]
-                                 *cos(a*M_PI*_ValX[i])
-                                 *sin(b*M_PI*_ValY[j])
-                                 *cos(c*M_PI*_ValZ[k]);
+              _ValFy[i][j][k] += (M+1) * M_PI * coeff[N][M][L]
+                               * sin( (N+1)*M_PI*_ValX[i] )
+                               * cos( (M+1)*M_PI*_ValY[j] )
+                               * sin( (L+1)*M_PI*_ValZ[k] );
                                  
-              _ValFz[i][j][k] += -c*M_PI*coeff[N]
-                                 *cos(a*M_PI*_ValX[i])
-                                 *cos(b*M_PI*_ValY[j])
-                                 *sin(c*M_PI*_ValZ[k]);
+              _ValFz[i][j][k] += (L+1) * M_PI * coeff[N][M][L]
+                               * sin( (N+1)*M_PI*_ValX[i] )
+                               * sin( (M+1)*M_PI*_ValY[j] )
+                               * cos( (L+1)*M_PI*_ValZ[k] );
                                  
-              _ValFxy[i][j][k] += a*b*M_PI*M_PI*coeff[N]
-                                  *sin(a*M_PI*_ValX[i])
-                                  *sin(b*M_PI*_ValY[j])
-                                  *cos(c*M_PI*_ValZ[k]);
+              _ValFxy[i][j][k] += (N+1) * (M+1) * M_PI * M_PI
+                                * coeff[N][M][L]
+                                * cos( (N+1)*M_PI*_ValX[i] )
+                                * cos( (M+1)*M_PI*_ValY[j] )
+                                * sin( (L+1)*M_PI*_ValZ[k] );
                                   
-              _ValFxz[i][j][k] += a*c*M_PI*M_PI*coeff[N]
-                                  *sin(a*M_PI*_ValX[i])
-                                  *cos(b*M_PI*_ValY[j])
-                                  *sin(c*M_PI*_ValZ[k]);
+              _ValFxz[i][j][k] += (N+1) * (L+1) * M_PI * M_PI
+                                * coeff[N][M][L]
+                                * cos( (N+1)*M_PI*_ValX[i] )
+                                * sin( (M+1)*M_PI*_ValY[j] )
+                                * cos( (L+1)*M_PI*_ValZ[k] );
                                   
-              _ValFyz[i][j][k] += b*c*M_PI*M_PI*coeff[N]
-                                  *cos(a*M_PI*_ValX[i])
-                                  *sin(b*M_PI*_ValY[j])
-                                  *sin(c*M_PI*_ValZ[k]);
+              _ValFyz[i][j][k] += (M+1) * (L+1) * M_PI * M_PI
+                                * coeff[N][M][L]
+                                * sin( (N+1)*M_PI*_ValX[i] )
+                                * cos( (M+1)*M_PI*_ValY[j] )
+                                * cos( (L+1)*M_PI*_ValZ[k] );
                                   
-              _ValFxyz[i][j][k] += -a*b*c*M_PI*M_PI*M_PI*coeff[N]
-                                   *sin(a*M_PI*_ValX[i])
-                                   *sin(b*M_PI*_ValY[j])
-                                   *sin(c*M_PI*_ValZ[k]);
-        }
+              _ValFxyz[i][j][k] += (N+1) * (M+1) * (L+1)
+                                 * M_PI * M_PI * M_PI
+                                 * coeff[N][M][L]
+                                 * cos( (N+1)*M_PI*_ValX[i] )
+                                 * cos( (M+1)*M_PI*_ValY[j] )
+                                 * cos( (L+1)*M_PI*_ValZ[k] );
+            }
       }
   
   fp = fopen("something.txt","w"); 
