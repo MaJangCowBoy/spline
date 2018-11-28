@@ -62,30 +62,30 @@ int main() {
                     }
                     
               if( _ValX < 0.1 ) {
-                Fc = ( 1 - cos(10*M_PI*_ValX) ) * 0.5;
+                Fc = ( ( 1 - cos(10*M_PI*_ValX) ) * 0.5 );
                 _ValF *= Fc;
               } else if( _ValX > 0.9 ) {
-                Fc = ( 1 + cos(10*M_PI*(_ValX-0.9)) ) * 0.5;
+                Fc = ( ( 1 + cos(10*M_PI*(_ValX-0.9)) ) * 0.5 );
                 _ValF *= Fc;
               } else {    }
                     
               if( _ValY < 0.1 ) {
-                Fc = ( 1 - cos(10*M_PI*_ValY) ) * 0.5;
+                Fc = ( ( 1 - cos(10*M_PI*_ValY) ) * 0.5 );
                 _ValF *= Fc;
               } else if( _ValY > 0.9 ) {
-                Fc = ( 1 + cos(10*M_PI*(_ValY-0.9)) ) * 0.5;
+                Fc = ( ( 1 + cos(10*M_PI*(_ValY-0.9)) ) * 0.5 );
                 _ValF *= Fc;
               } else {    }
               
               if( _ValZ < 0.1 ) {
-                Fc = ( 1 - cos(10*M_PI*_ValZ) ) * 0.5;
+                Fc = ( ( 1 - cos(10*M_PI*_ValZ) ) * 0.5 );
                 _ValF *= Fc;
               } else if( _ValZ > 0.9 ) {
-                Fc = ( 1 + cos(10*M_PI*(_ValZ-0.9)) ) * 0.5;
+                Fc = ( ( 1 + cos(10*M_PI*(_ValZ-0.9)) ) * 0.5 );
                 _ValF *= Fc;
               } else {    }
                     
-              fprintf(fp,"%lf\t%lf\t%lf\t%lf\n",_ValX,_ValY,_ValZ,_ValF);
+              fprintf(fp,"%.15e\t%.15e\t%.15e\t%.15e\n",_ValX,_ValY,_ValZ,_ValF);
             }
       }
        
